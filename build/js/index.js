@@ -4,6 +4,10 @@ angular.module('app', ['ui.router']);
 
 
 'use strict';
+angular.module('app').controller('mainCtrl',['$scope',function(){
+    
+}]);
+'use strict';
 
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider.state('main', {
@@ -14,10 +18,6 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
   $urlRouterProvider.otherwise('main');
 }])
 
-'use strict';
-angular.module('app').controller('mainCtrl',['$scope',function(){
-    
-}]);
 'use strict';
 angular.module('app').directive('appFoot',[function(){
     return {
