@@ -1,0 +1,41 @@
+@import '../varlable.less';
+.head{
+    width: 100%;
+    .h(96);
+    .h_top{
+        width: 100%;
+        height: 48/@rem;
+        line-height: 48/@rem;
+        color: #fff;
+        text-align: center;
+        .fontSize(18);
+        background-color: @defaultColor;
+    }
+    .h_tips{
+        width: 100%;
+        height: 48/@rem;
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        span{
+            line-height: 48/@rem;
+            margin-left:15/@rem;
+            color: #999;
+            font-size: 14/@rem;
+        }
+        a{
+            width: 70/@rem;
+            height: 26/@rem;
+            border-radius: 12/@rem;
+            line-height: 26/@rem;
+            text-align: center;
+            display: block;
+            position: absolute;
+            right: 10/@rem;
+            top: 11/@rem;
+            font-size: 13/@rem;
+            background-color: #eee;
+            color: @defaultColor;
+        }
+    }
+}

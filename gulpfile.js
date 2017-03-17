@@ -9,9 +9,9 @@ var app = {
 };
 //复制bower安装的js库
 gulp.task('lib',function(){
-    gulp.src('bower_components/**/*.js')
-    .pipe(gulp.dest(app.devPath + 'vender'))
-    .pipe(gulp.dest(app.prdPath + 'vender'))
+    gulp.src('lib/**/*.js')
+    .pipe(gulp.dest(app.devPath + 'vendor'))
+    .pipe(gulp.dest(app.prdPath + 'vendor'))
     .pipe($.connect.reload());
 });
 
@@ -70,11 +70,11 @@ gulp.task('server',['build'],function(){
     $.connect.server({
         root : [app.devPath],
         livereload : true,
-        port : 1234
+        port : 2233
     });
-    open('http://localhost:1234');
+    open('http://localhost:2233');
 
-    gulp.watch('bower_components/**/*',['lib']);
+    gulp.watch('lib/**/*',['lib']);
     gulp.watch(app.srcPath + '**/*.html',['html']);
     gulp.watch(app.srcPath + 'data/**/*.json',['json']);
     gulp.watch(app.srcPath + 'style/**/*.less',['less']);
