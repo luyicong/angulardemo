@@ -43,7 +43,7 @@ li {
   color: #fff;
   text-align: center;
   font-size: 0.48rem;
-  background-color: #04BFB9;
+  background-color: #00b38a;
 }
 .head .h_top .goback_btn {
   position: absolute;
@@ -52,6 +52,9 @@ li {
   left: 0;
   top: 0;
   font-size: 0.8rem;
+}
+.head .h_top .goback_btn {
+  background: url('../../image/back_i.png') no-repeat 0.21333333rem center;
 }
 .head .h_tips {
   width: 100%;
@@ -78,7 +81,7 @@ li {
   top: 0.29333333rem;
   font-size: 0.34666667rem;
   background-color: #eee;
-  color: #04BFB9;
+  color: #00b38a;
 }
 .job_list {
   width: 100%;
@@ -118,11 +121,81 @@ li {
   float: right;
   font-size: 0.42666667rem;
   font-weight: 600;
-  color: #04BFB9;
+  color: #00b38a;
   margin-right: 0.53333333rem;
 }
 .job_list .create_time {
   font-size: 0.32rem;
+}
+.detail_job_info {
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+}
+.job_name {
+  width: 100%;
+  height: 1.22666667rem;
+  line-height: 1.22666667rem;
+  text-indent: 0.21333333rem;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+  margin-bottom: 0.16rem;
+  font-size: 0.42666667rem;
+}
+.text_item {
+  width: 100%;
+  height: 0.85333333rem;
+  line-height: 0.85333333rem;
+  text-align: center;
+  font-size: 0.37333333rem;
+}
+.text_item i.d_icon {
+  width: 0.42666667rem;
+  height: 0.53333333rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.05333333rem;
+}
+.text_item i.salary_i {
+  background: url('../../image/salary_i.png') no-repeat center center;
+  background-size: 0.37333333rem 0.37333333rem;
+}
+.text_item i.address_i {
+  background: url('../../image/address_i.png') no-repeat center center;
+  background-size: 0.37333333rem 0.37333333rem;
+}
+.text_item i.j_type_i {
+  background: url('../../image/j_type_i.png') no-repeat center center;
+  background-size: 0.37333333rem 0.37333333rem;
+}
+.text_item i.exp_i {
+  background: url('../../image/exp_i.png') no-repeat center 0;
+  background-size: 0.42666667rem 0.42666667rem;
+}
+.text_item i.edu_i {
+  background: url('../../image/edu_i.png') no-repeat center 0;
+  background-size: 0.37333333rem 0.37333333rem;
+}
+.job_tips {
+  width: 100%;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  text-indent: 0.53333333rem;
+  font-size: 0.37333333rem;
+  color: #999;
+}
+.bottom_btn {
+  width: 100%;
+  height: 1.28rem;
+  line-height: 1.28rem;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #00b38a;
+  z-index: 9999;
+  text-align: center;
+  font-size: 0.42666667rem;
 }
 .foot {
   width: 100%;
@@ -140,7 +213,7 @@ li {
 }
 .foot .foot_nav .nav_item.active {
   background: #fdfafa;
-  color: #04BFB9;
+  color: #00b38a;
 }
 .foot .foot_nav .nav_item.active i.home_i {
   background: url('../../image/home_i_active.png') center 0 no-repeat;
