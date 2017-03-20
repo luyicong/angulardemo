@@ -1,80 +1,12 @@
 <div class="job_content_wrap">
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-        <div>11111111111111</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
-    <div>22222222222222</div>
+    <ul class="job_list" ng-controller="mainCtrl">
+        <li ng-repeat="item in list" ui-sref="job_details({id:item.id})">
+            <div class="img"><img src="../../image/1.jpg" alt=""></div>
+            <div class="job_info">
+                <p class="company_name" ng-bind="item.companyName"></p>
+                <p class="job_title_address"><span ng-bind="item.title"></span><span ng-bind="'['+item.address+']'"></span><span class="salary" ng-bind="item.salary"></span></p>
+                <p class="create_time" ng-bind="item.createTime"></p>
+            </div>
+        </li>
+    </ul>
 </div>

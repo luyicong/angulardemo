@@ -10,6 +10,22 @@
     .foot_nav{
         width: 100%;
         height: 100%;
+        .nav_item.active{
+            background:#fdfafa;
+            color: @defaultColor;
+            i.home_i{
+                background:url('../../image/home_i_active.png') center 0 no-repeat;
+                background-size: 26/@rem 26/@rem;
+            }
+            i.search_i{
+                background:url('../../image/search_i_active.png') center 0 no-repeat;
+                background-size: 26/@rem 26/@rem;
+            }
+            i.user_i{
+                background:url('../../image/user_i_active.png') center 0 no-repeat;
+                background-size: 26/@rem 26/@rem;
+            }
+        }
         .nav_item{
             height: 100%;
             line-height: 48/@rem;
@@ -24,12 +40,19 @@
                 height: 30/@rem;
                 display: block;
                 float: left;
-                border: 1px solid red;
                 margin:9/@rem 0;
-                background-size: 24/@rem 24/@rem;
             }
             i.home_i{
-                background:url('../../image/home_i.png') center -2/@rem;
+                background:url('../../image/home_i.png') center 0 no-repeat;
+                background-size: 26/@rem 26/@rem;
+            }
+            i.search_i{
+                background:url('../../image/search_i.png') center 2/@rem no-repeat;
+                background-size: 24/@rem 24/@rem;
+            }
+            i.user_i{
+                background:url('../../image/user_i.png') center 0 no-repeat;
+                background-size: 24/@rem 24/@rem;
             }
             span{
                 display: inline;

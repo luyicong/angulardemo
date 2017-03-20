@@ -28,9 +28,13 @@ a {
   -webkit-flex: 1;
   flex: 1;
 }
+ul,
+ol,
+li {
+  list-style: none;
+}
 .head {
   width: 100%;
-  height: 2.56rem;
 }
 .head .h_top {
   width: 100%;
@@ -40,6 +44,14 @@ a {
   text-align: center;
   font-size: 0.48rem;
   background-color: #04BFB9;
+}
+.head .h_top .goback_btn {
+  position: absolute;
+  width: 1.6rem;
+  height: 1.28rem;
+  left: 0;
+  top: 0;
+  font-size: 0.8rem;
 }
 .head .h_tips {
   width: 100%;
@@ -68,6 +80,50 @@ a {
   background-color: #eee;
   color: #04BFB9;
 }
+.job_list {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+.job_list li {
+  width: 100%;
+  height: 2.02666667rem;
+  border-bottom: 1px solid #eee;
+}
+.job_list .img {
+  width: 1.81333333rem;
+  height: 1.81333333rem;
+  overflow: hidden;
+  float: left;
+  margin: 0.10666667rem;
+}
+.job_list .img img {
+  width: 100%;
+  height: 100%;
+}
+.job_list .job_info {
+  overflow: hidden;
+  padding: 0.16rem 0 0.21333333rem 0.16rem;
+}
+.job_list .company_name {
+  font-weight: 600;
+  font-size: 0.37333333p;
+}
+.job_list .job_title_address {
+  font-size: 0.32rem;
+  height: 0.69333333rem;
+  line-height: 0.69333333rem;
+}
+.job_list .salary {
+  float: right;
+  font-size: 0.42666667rem;
+  font-weight: 600;
+  color: #04BFB9;
+  margin-right: 0.53333333rem;
+}
+.job_list .create_time {
+  font-size: 0.32rem;
+}
 .foot {
   width: 100%;
   height: 1.28rem;
@@ -81,6 +137,22 @@ a {
 .foot .foot_nav {
   width: 100%;
   height: 100%;
+}
+.foot .foot_nav .nav_item.active {
+  background: #fdfafa;
+  color: #04BFB9;
+}
+.foot .foot_nav .nav_item.active i.home_i {
+  background: url('../../image/home_i_active.png') center 0 no-repeat;
+  background-size: 0.69333333rem 0.69333333rem;
+}
+.foot .foot_nav .nav_item.active i.search_i {
+  background: url('../../image/search_i_active.png') center 0 no-repeat;
+  background-size: 0.69333333rem 0.69333333rem;
+}
+.foot .foot_nav .nav_item.active i.user_i {
+  background: url('../../image/user_i_active.png') center 0 no-repeat;
+  background-size: 0.69333333rem 0.69333333rem;
 }
 .foot .foot_nav .nav_item {
   height: 100%;
@@ -96,12 +168,19 @@ a {
   height: 0.8rem;
   display: block;
   float: left;
-  border: 1px solid red;
   margin: 0.24rem 0;
-  background-size: 0.64rem 0.64rem;
 }
 .foot .foot_nav .nav_item i.home_i {
-  background: url('../../image/home_i.png') center -0.05333333rem;
+  background: url('../../image/home_i.png') center 0 no-repeat;
+  background-size: 0.69333333rem 0.69333333rem;
+}
+.foot .foot_nav .nav_item i.search_i {
+  background: url('../../image/search_i.png') center 0.05333333rem no-repeat;
+  background-size: 0.64rem 0.64rem;
+}
+.foot .foot_nav .nav_item i.user_i {
+  background: url('../../image/user_i.png') center 0 no-repeat;
+  background-size: 0.64rem 0.64rem;
 }
 .foot .foot_nav .nav_item span {
   display: inline;
