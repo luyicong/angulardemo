@@ -4,6 +4,22 @@ angular.module('app', ['ui.router','ngCookies']);
 
 
 'use strict';
+//定义一个全局变量,run初始化变量
+angular.module('app').value('dict',{}).run(['dict','$http',function(dict,$http){
+    //获取城市选择列表
+    $http.get('data/city.json').then(function(resp){
+        dict.city = resp.data;
+    });
+    //获取薪资范围列表
+    $http.get('data/salary.json').then(function(resp){
+        dict.salary = resp.data;
+    });
+    //获取企业规模列表
+    $http.get('data/scale.json').then(function(resp){
+        dict.scale = resp.data;
+    });
+}]);
+'use strict';
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider.state('main', {
     url: '/main',
@@ -21,6 +37,26 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     url : '/search',
     templateUrl : 'view/search.html',
     controller : 'searchCtrl'
+  }).state('login',{
+    url : '/login',
+    templateUrl : 'view/login.html',
+    controller : 'loginCtrl'
+  }).state('register',{
+    url : '/register',
+    templateUrl : 'view/register.html',
+    controller : 'registerCtrl'
+  }).state('me',{
+    url : '/me',
+    templateUrl : 'view/me.html',
+    controller : 'meCtrl'
+  }).state('post',{
+    url : '/post',
+    templateUrl : 'view/post.html',
+    controller : 'postCtrl'
+  }).state('favorite',{
+    url : '/favorite',
+    templateUrl : 'view/favorite.html',
+    controller : 'favoriteCtrl'
   });
   $urlRouterProvider.otherwise('main');
 }]);
@@ -33,6 +69,11 @@ angular.module('app').controller('companyCtrl',['$http','$state','$scope',functi
         console.log($scope.jobcate[0]);
     });
 }]);
+'use strict';
+angular.module('app').controller('favoriteCtrl', ['$http', '$scope', function($http, $scope){
+
+}]);
+
 'use strict';
 angular.module('app').controller('jobDetailsCtrl',['$q','$http','$state','$scope','cache',function($q,$http,$state,$scope,cache){
         cache.remove('to');
@@ -64,6 +105,11 @@ angular.module('app').controller('jobDetailsCtrl',['$q','$http','$state','$scope
         }
 }]);
 'use strict';
+angular.module('app').controller('loginCtrl', ['$http', '$scope', function($http, $scope){
+
+}]);
+
+'use strict';
 angular.module('app').controller('mainCtrl', ['$http', '$scope', function($http, $scope){
     $http.get('/data/positionList.json').then(function(resp){
         $scope.list = resp.data;
@@ -71,8 +117,84 @@ angular.module('app').controller('mainCtrl', ['$http', '$scope', function($http,
 }]);
 
 'use strict';
-angular.module('app').controller('searchCtrl', ['$scope', function($scope){
+angular.module('app').controller('meCtrl', ['$http', '$scope', function($http, $scope){
 
+}]);
+
+'use strict';
+angular.module('app').controller('postCtrl', ['$http', '$scope', function($http, $scope){
+
+}]);
+
+'use strict';
+angular.module('app').controller('registerCtrl', ['$http', '$scope', function($http, $scope){
+
+}]);
+
+'use strict';
+angular.module('app').controller('searchCtrl', ['dict','$http','$scope', function(dict,$http,$scope){
+    $scope.name = '';
+    $scope.search = function(){
+        $http.get('/data/positionList.json?name='+$scope.name).then(function(resp){
+            $scope.searchLists = resp.data;
+        });
+    }
+    $scope.search();
+    //定义刷选条件列表数据的数组
+    $scope.sheet=[];
+    $scope.tabList = [
+        {
+            id:'city',
+            name:'城市'
+        },
+        {
+            id:'salary',
+            name:'薪资'
+        },
+        {
+            id:'scale',
+            name:'公司规模'
+        }
+        ];
+        var tabid = '';
+        //定义过滤条件的数组
+        $scope.filterObj = {};
+        $scope.tClick = function(id,name){
+            tabid = id;
+            $scope.sheet.list = dict[id];
+            $scope.sheet.visible = true;
+        }
+        //帅选事件
+        $scope.sClick = function(id,name){
+            if(id){
+                angular.forEach($scope.tabList,function(item){
+                    if(item.id === tabid){
+                        item.name = name;
+                    }
+                });
+                //定义过滤条件
+                $scope.filterObj[tabid + 'Id'] = id;
+            }else{
+                //没有id时删除过滤条件
+                delete $scope.filterObj[tabid + 'Id'];
+                angular.forEach($scope.tabList,function(item){
+                    if(item.id === tabid){
+                        switch(item.id){
+                            case 'city':
+                                item.name = '城市';
+                                break;
+                            case 'salary':
+                                item.name = '薪资';
+                                break;
+                            case 'scale':
+                                item.name = '公司规模';
+                                break;
+                                default:
+                        }
+                    }
+                });
+            }
+        }
 }]);
 
 'use strict';
@@ -110,8 +232,9 @@ angular.module('app').directive('appJobList',[function(){
         restrict:'A',
         replace:true,
         templateUrl:'view/template/hbody.html',
-        scope : {
-            data:'='
+        scope:{
+            data:'=',
+            filterObj:'='
         }
     }
 }]);
@@ -170,6 +293,59 @@ angular.module('app').directive('appJobInfo',[function(){
         link : function($scope){
             $scope.imgPath = $scope.isActive?'image/star_i_active.png':'image/star_i.png';
         }
+    }
+}]);
+'use strict';
+angular.module('app').directive('appTab',[function(){
+    return {
+        restrict:'A',
+        replace:true,
+        templateUrl:'view/template/search_tab.html',
+        scope:{
+            list:'=',
+            tabClick:'&'
+        },
+        link:function($scope){
+            $scope.select = function(tab){
+                $scope.selectId = tab.id;
+                $scope.tabClick(tab);
+            }
+            // $scope.select('city');
+        }
+    }
+}]);
+'use strict';
+angular.module('app').directive('appSheet',[function(){
+    return {
+        restrict:'A',
+        replace:true,
+        templateUrl:'view/template/sheet.html',
+        scope:{
+            list:'=',
+            visible:'=',
+            select:'&'
+        }
+    }
+}]);
+'use strict';
+//定义一个过滤器
+angular.module('app').filter('filterByObj',[function(){
+    return function(list,obj){
+        //定义结果数组
+        var result = [];
+        angular.forEach(list,function(item){
+            //假如两值相等
+            var isEqual = true;
+            for(var e in obj){ 
+                if(item[e] !== obj[e]){//遍历，假如不相等
+                    isEqual = false;
+                }
+            }
+            if(isEqual){
+                result.push(item);
+            }
+        });
+        return result;
     }
 }]);
 'use strict';

@@ -1,0 +1,44 @@
+.sheet{
+    position: fixed;
+    left:0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.7);
+    z-index: 99;
+    .sheet_wrap{
+        width: 100%;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        ul{
+            margin:8/@rem;
+            overflow:scroll;
+            max-height: 360/@rem;
+            border-radius: 4/@rem;
+            color: @defaultColor;
+            li{
+                    width: 100%;
+                    height: 46/@rem;
+                    line-height: 46/@rem;
+                    text-align: center;
+                    font-size: 18/@rem;
+                    background: #fff;
+                    float: left;
+                    border-bottom: 1px solid #eee;
+                }
+            }
+            .close_btn{
+                background: #fff;
+                height: 46/@rem;
+                line-height: 46/@rem;
+                border-radius: 4/@rem;
+                text-align: center;
+                font-size: 18/@rem;
+                margin: 8/@rem;
+            }
+    }
+    
+}

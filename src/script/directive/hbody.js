@@ -4,8 +4,9 @@ angular.module('app').directive('appJobList',[function(){
         restrict:'A',
         replace:true,
         templateUrl:'view/template/hbody.html',
-        scope : {
-            data:'='
+        scope:{
+            data:'=',
+            filterObj:'='
         }
     }
 }]);
