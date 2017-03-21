@@ -1,9 +1,9 @@
 {
-  "id": "p3",
-  "imageUrl": "/image/company-3.png",
-  "name": "销售",
+  "id": "p1",
+  "imageUrl": "/image/company-1.png",
+  "name": "项目经理",
   "companyId": "c3",
-  "companyName": "千度",
+  "companyName": "中锐网络科技有限公司",
   "cityId": "c1",
   "cityName": "上海",
   "scaleId": "s3",
@@ -14,6 +14,7 @@
   "salaryName": "3k-5k",
   "experience": "1-3年",
   "education": "专科",
-  "benefit": "成长空间大",
-  "description": "岗位职责：\n1.销售产品；..."
+  "benefit": "职位诱惑：五险一金，各种补贴，免费零食，美女多,成长空间大",
+  "jobType":"全职",
+  "description": "岗位职责：\n1.负责项目团队的带领。\n2.制定项目开发详细需求文档。\n3.制定项目开发详细需求文档。\n4.制定项目开发详细需求文档。\n5.制定项目开发详细需求文档。"
 }

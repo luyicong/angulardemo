@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider.state('main', {
     url: '/main',
@@ -9,6 +8,14 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
     url : '/job_details/:id',
     templateUrl : 'view/job_details.html',
     controller : 'jobDetailsCtrl'
+  }).state('company',{
+    url : '/company/:id',
+    templateUrl : 'view/company.html',
+    controller : 'companyCtrl'
+  }).state('search',{
+    url : '/search',
+    templateUrl : 'view/search.html',
+    controller : 'searchCtrl'
   });
   $urlRouterProvider.otherwise('main');
 }]);

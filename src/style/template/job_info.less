@@ -5,13 +5,37 @@
 }
 .job_name{
     width: 100%;
-    height: 46/@rem;
-    line-height: 46/@rem;
+    height: 48/@rem;
+    line-height: 48/@rem;
     text-indent: 8/@rem;
     border-bottom: 1px solid #eee;
     font-weight: 600;
     margin-bottom: 6/@rem;
     font-size: 16/@rem;
+    position:relative;
+    .favorite_box{
+        width: 66/@rem;
+        height: 46/@rem;
+        position: absolute;
+        right: 6/@rem;
+        top: 0;
+        img{
+            width: 22/@rem;
+            height: 22/@rem;
+            margin: 4/@rem auto 0 auto;
+            display: block;
+        }
+        span{
+            width: 66/@rem;
+            height: 22/@rem;
+            line-height: 22/@rem;
+            float: left;
+            font-size: 12/@rem;
+            font-weight: normal;
+            text-align: center;
+            text-indent: 0;
+        }
+    }
 }
 .text_item{
     width: 100%;
@@ -44,7 +68,7 @@
          background-size: 16/@rem 16/@rem;
     }
     i.edu_i{
-        background: url('../../image/edu_i.png') no-repeat center 0;
+        background: url('../../image/edu_i.png') no-repeat center 2/@rem;
          background-size: 14/@rem 14/@rem;
     }
 }
@@ -55,6 +79,10 @@
     text-indent: 20/@rem;
     font-size: 14/@rem;
     color: #999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .bottom_btn{
     width: 100%;
@@ -68,4 +96,21 @@
     z-index: 9999;
     text-align: center;
     font-size: 16/@rem;
+}
+
+.Job_desc{
+    width: 100%;
+    height: 40/@rem;
+    border-top: 1px solid #eee;
+    line-height: 40/@rem;
+    text-indent: 15/@rem;
+    font-weight: 600;
+    background: #b8e6dc;
+    color: @defaultColor;
+}
+.Job_desc_content{
+    background: #fff;
+    font-size: 13/@rem;
+    line-height: 30/@rem;
+    padding: 10/@rem;
 }

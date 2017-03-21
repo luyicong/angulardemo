@@ -33,6 +33,7 @@ gulp.task('json',function(){
 //less文件编译
 gulp.task('less',function(){
     gulp.src(app.srcPath + 'style/index.less')
+    .pipe($.plumber())
     .pipe($.less())  //编译less
     .pipe(gulp.dest(app.devPath + 'css'))
     .pipe($.cssmin())    //压缩css
@@ -42,6 +43,7 @@ gulp.task('less',function(){
 //js文件合并压缩
 gulp.task('js',function(){
     gulp.src(app.srcPath + 'script/**/*.js')
+    .pipe($.plumber())
     .pipe($.concat('index.js'))  //合并所有js文件为index.js
     .pipe(gulp.dest(app.devPath + 'js'))
     .pipe($.uglify())  //压缩js

@@ -1,11 +1,11 @@
 <div class="job_content_wrap">
     <ul class="job_list" ng-controller="mainCtrl">
         <li ng-repeat="item in list" ui-sref="job_details({id:item.id})">
-            <div class="img"><img src="../../image/1.jpg" alt=""></div>
+            <div class="img"><img ng-src="{{item.imageUrl}}" alt=""></div>
             <div class="job_info">
                 <p class="company_name" ng-bind="item.companyName"></p>
-                <p class="job_title_address"><span ng-bind="item.title"></span><span ng-bind="'['+item.address+']'"></span><span class="salary" ng-bind="item.salary"></span></p>
-                <p class="create_time" ng-bind="item.createTime"></p>
+                <p class="job_title_address"><span ng-bind="item.job"></span><span ng-bind="'['+item.cityName+']'"></span><span class="salary" ng-bind="item.salaryName"></span></p>
+                <p class="create_time" ng-bind="item.date"></p>
             </div>
         </li>
     </ul>

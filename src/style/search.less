@@ -1,0 +1,55 @@
+.searchTopBar{
+    width: 100%;
+    height: 96/@rem;
+    border-bottom:1px solid #eee;
+    .text_tips{
+        width: 100%;
+        height: 48/@rem;
+        line-height: 48/@rem;
+        color: #fff;
+        text-align: center;
+        background: @defaultColor;
+        font-size: 18/@rem;
+    }
+    .search_box{
+        width: 100%;
+        height: 48/@rem;
+        line-height: 48/@rem;
+        background: #fff;
+        .cancel_btn{
+            display: block;
+            width: 15%;
+            height: 48/@rem;
+            float: left;
+            text-align: center;
+            font-size: 14/@rem;
+        }
+        .search_input{
+            width: 70%;
+            height: 100%;
+            float: left;
+            input{
+                width: 100%;
+                border:1px solid #eee;
+                background: #eee;
+                border-radius: 10/@rem;
+                height: 30/@rem;
+                margin-top: 8/@rem;
+                padding-left: 10/@rem;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        .submit_btn{
+            width: 15%;
+            height: 100%;
+            line-height: 48/@rem;
+            text-align: center;
+            float: left;
+            font-size: 14/@rem;
+        }
+    }
+}

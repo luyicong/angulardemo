@@ -1,0 +1,13 @@
+<div class="company_job_cls">
+    <div class="company_cls_tip_title">职位分类</div>
+    <div class="cls_list">
+        <span  ng-repeat="clsItem in jobcate"  class="{{$index===isActive?'active':''}}" ng-bind="clsItem.name" ng-click="showThisJobList($index)">技术</span>
+    </div>
+    <ul class="cls_job_list">
+        <li ng-repeat="jobItem in jobList">
+            <p class="title" ng-bind="jobItem.name"></p>
+            <p class="create_time" ng-bind="jobItem.createdDate"></p>
+            <span ng-bind="jobItem.salary"></span>
+        </li>
+    </ul>
+</div>

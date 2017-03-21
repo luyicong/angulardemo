@@ -1,11 +1,11 @@
 [{
     "id": "p3",
-    "imageUrl": "/image/company-3.png",
-    "job": "销售",
+    "imageUrl": "/image/company-1.jpg",
+    "job": "销售经理",
     "companyId": "c3",
-    "companyName": "千度",
+    "companyName": "中锐网络科技有限公司",
     "cityId": "c2",
-    "cityName": "上海",
+    "cityName": "广州",
     "scaleId": "s4",
     "scaleName": "500人以上",
     "industryId": "i1",
@@ -19,10 +19,10 @@
     "date": "2016-06-01 11:05"
   }, {
     "id": "p4",
-    "imageUrl": "/image/company-3.png",
+    "imageUrl": "/image/company-2.jpg",
     "job": "产品经理",
     "companyId": "c3",
-    "companyName": "千度",
+    "companyName": "广西牛人网络科技公司",
     "cityId": "c3",
     "cityName": "广州",
     "scaleId": "s4",
@@ -38,12 +38,12 @@
     "date": "2016-05-01 11:05"
   }, {
     "id": "p1",
-    "imageUrl": "/image/company-1.png",
-    "job": "WEB前端",
+    "imageUrl": "/image/company-1.jpg",
+    "job": "WEB前端开发工程师",
     "companyId": "c1",
-    "companyName": "慕课网",
+    "companyName": "广西网络有限公司",
     "cityId": "c1",
-    "cityName": "北京",
+    "cityName": "南宁市",
     "scaleId": "s2",
     "scaleName": "50-100人",
     "industryId": "i1",
@@ -57,8 +57,8 @@
     "date": "2016-06-01 01:05"
   }, {
     "id": "p2",
-    "imageUrl": "/image/company-2.png",
-    "job": "阿语SEM工程师",
+    "imageUrl": "/image/company-2.jpg",
+    "job": "运维工程师",
     "companyId": "c2",
     "companyName": "六一集团有限公司",
     "cityId": "c1",
