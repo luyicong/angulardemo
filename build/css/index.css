@@ -112,6 +112,7 @@ input {
 .job_list .job_info {
   overflow: hidden;
   padding: 0.16rem 0 0.21333333rem 0.16rem;
+  position: relative;
 }
 .job_list .company_name {
   font-weight: 600;
@@ -127,7 +128,7 @@ input {
   font-size: 0.42666667rem;
   font-weight: 600;
   color: #00b38a;
-  margin-right: 0.53333333rem;
+  margin-right: 0.8rem;
 }
 .job_list .create_time {
   font-size: 0.32rem;
@@ -742,6 +743,20 @@ input {
 }
 .my_post_list {
   padding-top: 2.61333333rem;
+}
+.star_i {
+  display: block;
+  height: 0.8rem;
+  width: 0.8rem;
+  background: url('../image/star_i.png') no-repeat center center;
+  background-size: 0.64rem 0.64rem;
+  position: absolute;
+  top: 0.08rem;
+  right: 0.21333333rem;
+}
+.star_i.active {
+  background: url('../image/star_i_active.png') no-repeat center center;
+  background-size: 0.64rem 0.64rem;
 }
 body {
   background-color: #eee;

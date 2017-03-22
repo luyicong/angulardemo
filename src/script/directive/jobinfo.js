@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app').directive('appJobInfo',[function(){
+angular.module('app').directive('appJobInfo',['$http',function($http){
     return {
         restrict:'A',
         replace:true,
@@ -10,7 +10,21 @@ angular.module('app').directive('appJobInfo',[function(){
             pos:'='
         },
         link : function($scope){
-            $scope.imgPath = $scope.isActive?'image/star_i_active.png':'image/star_i.png';
+           $scope.$watch('pos',function(newval){
+            if(newval){
+                 $scope.pos.select = $scope.pos.select || false;
+                 $scope.imgPath = $scope.pos.select?'image/star_i_active.png':'image/star_i.png';
+            }
+           });
+            $scope.favorite = function(){
+                $http.post('data/myFavorite.json',{
+                    id : $scope.pos.id,
+                    select : !$scope.pos.select
+                }).success(function(){
+                    $scope.pos.select = !$scope.pos.select;
+                    $scope.imgPath = $scope.pos.select?'image/star_i_active.png':'image/star_i.png';
+                });
+            }
         }
     }
 }]);

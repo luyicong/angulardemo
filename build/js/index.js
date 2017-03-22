@@ -122,17 +122,23 @@ angular.module('app').controller('companyCtrl',['$http','$state','$scope',functi
 }]);
 'use strict';
 angular.module('app').controller('favoriteCtrl', ['$http', '$scope', function($http, $scope){
-
+    $http.get('data/myFavorite.json').then(function(resp){
+        $scope.favoriteList = resp.data;
+    });
 }]);
 
 'use strict';
-angular.module('app').controller('jobDetailsCtrl',['$q','$http','$state','$scope','cache',function($q,$http,$state,$scope,cache){
-        $scope.isLogin = false;
+angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state','$scope','cache',function($log,$q,$http,$state,$scope,cache){
+        $scope.isLogin = !!cache.get('name');
+        $scope.message = $scope.isLogin?'投个简历':'去登录'
         function getJobInfo(){
             //延迟对象
             var def = $q.defer();
             $http.get('/data/position.json?id='+$state.params.id).then(function(resp){
                 $scope.position = resp.data;
+                if(resp.data.posted){
+                    $scope.message = '已投递';
+                }
                 def.resolve(resp.data);
             },function(error){
                 def.reject(error);
@@ -152,6 +158,22 @@ angular.module('app').controller('jobDetailsCtrl',['$q','$http','$state','$scope
             $http.get('data/company.json?id='+id).then(function(resp){
                 $scope.companyInfo = resp.data;
             });    
+        }
+        //投简历事件
+        $scope.go = function(){
+            if($scope.message !== '已投递'){
+                if($scope.isLogin){
+                    $http.post('data/position.json',{
+                        id : $scope.position.id
+                    }).success(function(resp){
+                        $log.info(resp);
+                        $scope.message = '已投递';
+                    });
+                }else{
+                    //页面跳转
+                    $sate.go('login');
+                }
+            }
         }
 }]);
 'use strict';
@@ -211,9 +233,22 @@ angular.module('app').controller('postCtrl', ['$http', '$scope', function($http,
         }
     ];
     $http.get('data/myPost.json').then(function(resp){
-        console.log(resp);
         $scope.myPostList = resp.data;
     });
+    $scope.filterObj = {};
+    $scope.tClick = function(id,name){
+        switch(id){
+            case 'all':
+                delete $scope.filterObj.state;
+            break;
+            case 'pass':
+                $scope.filterObj.state = '1';
+            break;
+            case 'fail':
+                $scope.filterObj.state = '-1';
+            break;
+        }
+    }
 }]);
 
 'use strict';
@@ -370,14 +405,26 @@ angular.module('app').directive('appFoot',[function(){
     }
 }]);
 'use strict';
-angular.module('app').directive('appJobList',[function(){
+angular.module('app').directive('appJobList',['$http',function($http){
     return {
         restrict:'A',
         replace:true,
         templateUrl:'view/template/hbody.html',
         scope:{
             data:'=',
-            filterObj:'='
+            filterObj:'=',
+            isFavorite:'='
+        },
+        link : function($scope){
+            $scope.select = function(item){
+                $http.post('data/myFavorite.json',{
+                    id : item.id,
+                    select : !item.select
+                }).success(function(){
+                    item.select = !item.select;
+                });
+                
+            }
         }
     }
 }]);
@@ -423,7 +470,7 @@ angular.module('app').directive('appJobCompanyInfo',[function(){
     }
 }]);
 'use strict';
-angular.module('app').directive('appJobInfo',[function(){
+angular.module('app').directive('appJobInfo',['$http',function($http){
     return {
         restrict:'A',
         replace:true,
@@ -434,7 +481,21 @@ angular.module('app').directive('appJobInfo',[function(){
             pos:'='
         },
         link : function($scope){
-            $scope.imgPath = $scope.isActive?'image/star_i_active.png':'image/star_i.png';
+           $scope.$watch('pos',function(newval){
+            if(newval){
+                 $scope.pos.select = $scope.pos.select || false;
+                 $scope.imgPath = $scope.pos.select?'image/star_i_active.png':'image/star_i.png';
+            }
+           });
+            $scope.favorite = function(){
+                $http.post('data/myFavorite.json',{
+                    id : $scope.pos.id,
+                    select : !$scope.pos.select
+                }).success(function(){
+                    $scope.pos.select = !$scope.pos.select;
+                    $scope.imgPath = $scope.pos.select?'image/star_i_active.png':'image/star_i.png';
+                });
+            }
         }
     }
 }]);

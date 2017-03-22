@@ -1,10 +1,10 @@
 [
   {
     "id": "p1",
-    "imageUrl": "/image/company-1.png",
+    "imageUrl": "/image/company-1.jpg",
     "job": "WEB前端",
     "companyId": "c1",
-    "companyName": "慕课网",
+    "companyName": "中锐网络科技有限公司",
     "cityId": "c1",
     "cityName": "北京",
     "scaleId": "s2",

@@ -6,6 +6,7 @@
                 <p class="company_name" ng-bind="item.companyName"></p>
                 <p class="job_title_address"><span ng-bind="item.job"></span><span ng-bind="'['+item.cityName+']'"></span><span ng-bind="'-('+item.scaleName+')'"></span><span class="salary" ng-bind="item.salaryName"></span></p>
                 <p class="create_time" ng-bind="item.date"></p>
+                <p ng-if="isFavorite" ng-click="$event.stopPropagation();select(item);" class="star_i {{item.select?'active':''}}"></p>
             </div>
         </li>
     </ul>

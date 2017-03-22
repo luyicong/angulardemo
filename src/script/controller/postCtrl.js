@@ -15,7 +15,20 @@ angular.module('app').controller('postCtrl', ['$http', '$scope', function($http,
         }
     ];
     $http.get('data/myPost.json').then(function(resp){
-        console.log(resp);
         $scope.myPostList = resp.data;
     });
+    $scope.filterObj = {};
+    $scope.tClick = function(id,name){
+        switch(id){
+            case 'all':
+                delete $scope.filterObj.state;
+            break;
+            case 'pass':
+                $scope.filterObj.state = '1';
+            break;
+            case 'fail':
+                $scope.filterObj.state = '-1';
+            break;
+        }
+    }
 }]);
