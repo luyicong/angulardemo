@@ -1,6 +1,5 @@
 'use strict';
 angular.module('app').controller('jobDetailsCtrl',['$q','$http','$state','$scope','cache',function($q,$http,$state,$scope,cache){
-        cache.remove('to');
         $scope.isLogin = false;
         function getJobInfo(){
             //延迟对象

@@ -12,9 +12,24 @@
         height: 47/@rem;
         line-height: 47/@rem;
         text-align: center;
-        border-bottom: 1/@rem solid #fff;  
+        border-bottom: 1/@rem solid #fff;
+        position: relative;
+        &:after{
+            content: '';
+            display: block;
+            width: 24/@rem;
+            height: 24/@rem;
+            background: url('/image/down_i.png') no-repeat center center;
+            background-size: 12/@rem 12/@rem;
+            position: absolute;
+            right: 0;
+            top: 12/@rem;
+        }
     }
     li.active{
             border-bottom: 1/@rem solid @defaultColor;
         }
+}
+.post_page_tab.tab{
+    top: 48/@rem;
 }

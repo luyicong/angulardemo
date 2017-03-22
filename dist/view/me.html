@@ -1,0 +1,19 @@
+<div class="me_wrap">
+    <div ng-if="name">
+        <div class="me_img">
+            <img ng-src="{{image}}">
+            <span ng-bind="name">大神神</span>
+        </div>
+        <div class="me_btn_wrap">
+            <a class="post_btn" href="javascript:;" ui-sref="post">投递</a>
+            <a class="collection_btn" href="javascript:;" ui-sref="favorite">我的收藏</a>
+        </div>
+        <div class="me_btn_wrap">
+            <a class="exit_login_btn" ng-click="logout()" href="javascript:;">退出登录</a>
+        </div>
+    </div>
+    <div ng-hide="name">
+        <a class="go_login_btn" href="javascript:;" ui-sref="login">去登录</a>
+    </div>
+</div>
+<div app-foot></div>

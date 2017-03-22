@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ui.router','ngCookies']);
+angular.module('app', ['ui.router','ngCookies','validation']);
 
 
 'use strict';
@@ -18,6 +18,29 @@ angular.module('app').value('dict',{}).run(['dict','$http',function(dict,$http){
     $http.get('data/scale.json').then(function(resp){
         dict.scale = resp.data;
     });
+}]);
+'use strict';
+angular.module('app').config(['$provide',function($provide){
+    $provide.decorator('$http',['$delegate','$q',function($delegate,$q){
+        var get = $delegate.get;
+        $delegate.post = function(url,data,config){
+            var def = $q.defer();
+            get(url).then(function(resp){
+                def.resolve(resp);
+            },function(error){
+                def.reject(error);
+            });
+            return {
+                success : function(cb){
+                    def.promise.then(cb);
+                },
+                error : function(cb){
+                    def.promise.then(cb);
+                }
+            }
+        }
+        return $delegate;
+    }]);
 }]);
 'use strict';
 angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -62,11 +85,39 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
 }]);
 
 'use strict';
+angular.module('app').config(['$validationProvider',function($validationProvider){
+    //编写校验表单的值是否符合要求逻辑
+    var expression = {
+        phone : /^1[34578]\d{9}$/,
+        password : function(value){
+            var str = value + '';
+            return str.length > 6;
+        },
+        required : function(value){
+            return !!value;
+        }
+    };
+    var defaultMsg = {
+        phone : {
+            success : '',
+            error : '必须是11位的手机号！'
+        },
+        password : {
+            success : '',
+            error : '长度至少为6位！'
+        },
+        required : {
+            success : '',
+            error : '值不能为空'
+        }
+    };
+    $validationProvider.setExpression(expression).setDefaultMsg(defaultMsg);
+}]);
+'use strict';
 angular.module('app').controller('companyCtrl',['$http','$state','$scope',function($http,$state,$scope){
     $http.get('data/company.json?id='+$state.params.id).then(function(resp){
         $scope.companyInfo = resp.data;
         $scope.jobcate = resp.data.positionClass;
-        console.log($scope.jobcate[0]);
     });
 }]);
 'use strict';
@@ -76,7 +127,6 @@ angular.module('app').controller('favoriteCtrl', ['$http', '$scope', function($h
 
 'use strict';
 angular.module('app').controller('jobDetailsCtrl',['$q','$http','$state','$scope','cache',function($q,$http,$state,$scope,cache){
-        cache.remove('to');
         $scope.isLogin = false;
         function getJobInfo(){
             //延迟对象
@@ -105,30 +155,123 @@ angular.module('app').controller('jobDetailsCtrl',['$q','$http','$state','$scope
         }
 }]);
 'use strict';
-angular.module('app').controller('loginCtrl', ['$http', '$scope', function($http, $scope){
-
+angular.module('app').controller('loginCtrl', ['cache','$http', '$scope','$state', function(cache,$http, $scope,$state){
+    $scope.submit = function(){
+        $http.post('data/login.json',$scope.user).success(function(resp){
+            //写入缓存
+            cache.put('id',resp.data.id);
+            cache.put('name',resp.data.name);
+            cache.put('image',resp.data.image);
+            $state.go('main');
+        });
+    }
 }]);
 
 'use strict';
-angular.module('app').controller('mainCtrl', ['$http', '$scope', function($http, $scope){
+angular.module('app').controller('mainCtrl', ['cache','$state','$http', '$scope', function(cache,$state,$http, $scope){
+    if(cache.get('name')){
+        $scope.isLogin = true;
+    }else{
+        $scope.isLogin = false;
+    }
     $http.get('/data/positionList.json').then(function(resp){
         $scope.list = resp.data;
     });
 }]);
 
 'use strict';
-angular.module('app').controller('meCtrl', ['$http', '$scope', function($http, $scope){
-
+angular.module('app').controller('meCtrl', ['$state','cache','$http', '$scope', function($state,cache,$http, $scope){
+    if(cache.get('name')){
+        $scope.name = cache.get('name');
+        $scope.image = cache.get('image');
+    }
+    //退出登录
+    $scope.logout = function(){
+        cache.remove('id');
+        cache.remove('name');
+        cache.remove('image');
+        $state.go('main');
+    }
 }]);
 
 'use strict';
 angular.module('app').controller('postCtrl', ['$http', '$scope', function($http, $scope){
-
+    $scope.tabList = [
+        {
+            id:'all',
+            name:'全部'
+        },
+        {
+            id:'pass',
+            name:'邀请面试'
+        },
+        {
+            id:'fail',
+            name:'不合适'
+        }
+    ];
+    $http.get('data/myPost.json').then(function(resp){
+        console.log(resp);
+        $scope.myPostList = resp.data;
+    });
 }]);
 
 'use strict';
-angular.module('app').controller('registerCtrl', ['$http', '$scope', function($http, $scope){
-
+angular.module('app').controller('registerCtrl', ['$state','$interval','$http', '$scope', function($state,$interval,$http, $scope){
+    $scope.onOff = false;
+    $scope.regSuccess = true;
+    var iNum = 3;
+    $scope.submit = function(){
+        console.log($scope.user);
+        $http.post('data/regist.json',$scope.user).success(function(resp){
+            // console.log(resp);
+            $scope.onOff = true;
+            $scope.regSuccess = true;
+            $scope.isSuccess = true;
+            iNum = 3;
+            $scope.successTtext = '恭喜您，注册成功！3s后跳转到登录页面。'
+            var timer0 = $interval(function(){
+                if(iNum <= 0){
+                        //关闭定时器
+                        $interval.cancel(timer0);
+                        $scope.successTtext = '';
+                        //跳转至登录页面
+                        $state.go('login');
+                    }else{
+                        iNum--;
+                        $scope.successTtext = '恭喜您，注册成功!'+iNum+'s后跳转到登录页面。';
+                    }
+            },1000);
+            // $state.go('login');
+        },function(error){
+            $scope.onOff = false;
+            $scope.regSuccess = false;
+            $scope.isSuccess = true;
+        });
+    }
+    //获取短信验证码
+    var count = 60;
+    $scope.senCode = function(){
+        $http.get('data/code.json').then(function(resp){
+            if(resp.data.state === 1){
+                count = 60;
+                $scope.time = '60s重新获取';
+                //定时器计时，倒计时60s
+                var timer = $interval(function(){
+                    if(count<=0){
+                        //关闭定时器
+                        $interval.cancel(timer);
+                        $scope.time = '';
+                        return;
+                    }else{
+                        count--;
+                        $scope.time = count+'s重新获取';
+                    }
+                    
+                },1000);
+            }
+        });
+    }
 }]);
 
 'use strict';
@@ -351,28 +494,28 @@ angular.module('app').filter('filterByObj',[function(){
 'use strict';
 //自定义服务的两种方式，service和factory,比如：定义一个处理cookies服务
 angular.module('app')
-// .service('cache',['$cookies',function($cookies){
-//     this.put = function(key,value){
-//         $cookies.put(key,value);
-//     }
-//     this.get = function(key){
-//         return $cookies.get(key);
-//     }
-//     this.remove = function(key){
-//         $cookies.remove(key);
-//     }
-// }]);
-
-.factory('cache',['$cookies',function($cookies){
-    return {
-        put : function(key,value){
-            $cookies.put(key,value);
-        },
-        get : function(key){
-            return $cookies.get(key);
-        },
-        remove : function(key){
-            $cookies.remove(key);
-        }
+.service('cache',['$cookies',function($cookies){
+    this.put = function(key,value){
+        $cookies.put(key,value);
+    }
+    this.get = function(key){
+        return $cookies.get(key);
+    }
+    this.remove = function(key){
+        $cookies.remove(key);
     }
 }]);
+
+// .factory('cache',['$cookies',function($cookies){
+//     return {
+//         put : function(key,value){
+//             $cookies.put(key,value);
+//         },
+//         get : function(key){
+//             return $cookies.get(key);
+//         },
+//         remove : function(key){
+//             $cookies.remove(key);
+//         }
+//     }
+// }]);

@@ -1,0 +1,26 @@
+<div class="login">
+    <div class="login_form_wrap">
+        <div class="page_title">用户注册</div>
+        <form name="form">
+            <div class="input_item">
+                <div class="item_left icon_acccount"></div>
+                <div class="item_right">
+                    <input name="phone" ng-model="user.phone" validator="required,phone" class="text_input" type="text" placeholder="请输入账号名称">
+                </div>
+            </div>
+            <div class="input_item">
+                <div class="item_left icon_password"></div>
+                <div class="item_right">
+                    <input name="password" ng-model="user.password" validator="required,password" class="text_input" type="password" placeholder="请设置密码">
+                </div>
+            </div>
+            <div class="input_item phone_code">
+                <input name="code" ng-model="user.code" validator="required" id="code" type="text" placeholder="请输入短信验证码">
+                <div ng-click="time?1==1:senCode();" ng-bind="time?time:'获取验证码'" class="get_code_btn {{time?'disabled':''}}"></div>
+            </div>
+            <div class="submit_btn btn_item"><input type="button" validation-submit="form" ng-click="submit()" value="注册"></div>
+            <div ui-sref="login" class="register_btn btn_item">登录</div>
+        </form>
+        <div ng-show="onOff" ng-bind="regSuccess?successTtext:'注册失败，请稍后重新！'" class="ajax_tip {{isSuccess?'ajax_success_tip':'ajax_error_tip'}}"></div>
+    </div>
+</div>

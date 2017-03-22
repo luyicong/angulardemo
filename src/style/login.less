@@ -6,17 +6,28 @@
     bottom: 0; 
     background: url('/image/background.png') no-repeat center center;
     background-size: cover;
+    .page_title{
+        width: 276/@rem;
+        height: 40/@rem;
+        // line-height: 40/@rem;
+        text-align: center;
+        color:@defaultColor;;
+        font-size: 20/@rem;
+        margin:0 auto 25/@rem;
+        font-weight: 600;
+        border-bottom: 1/@rem solid @defaultColor;
+    }
 }
 .login_form_wrap{
     position: fixed;
     left: 0;
-    bottom: 150/@rem;
+    top: 50/@rem;
     right: 0;
     .input_item,.btn_item{
         width:276/@rem;
-        height: 48/@rem;
+        height: 70/@rem;
         overflow: hidden;
-        margin:10/@rem auto;
+        margin:0 auto;
     }
     .item_left{
         width: 48/@rem;
@@ -26,30 +37,37 @@
     }
     .icon_acccount{
         background: url('/image/account.png') no-repeat center center rgba(0, 0, 0, .7);
+        background-size: 20/@rem 20/@rem;
     }
     .icon_password{
         background: url('/image/lock.png') no-repeat center center rgba(0, 0, 0, .7);
+        background-size: 20/@rem 20/@rem;
     }
     .item_right{
-        width: 226/@rem;
+        width: 228/@rem;
         height: 48/@rem;
         float: left;
         input{
             width: 224/@rem;
             height: 46/@rem;
-            line-height: 48/@rem;
+            // line-height: 48/@rem;
             background: rgba(0, 0, 0, .5);
-            border:1/@rem solid #eee;
+            border:1/@rem solid #ccc;
             font-size: 16/@rem;
             text-indent: 8/@rem;
-            color: #eee;
+            color: #fff;
+        }
+        .validation-invalid{
+            color: red;
         }
     }
     .submit_btn.btn_item{
-        margin-top: 40/@rem;
+        width: 272/@rem;
+        overflow: hidden;
+        // margin-top: 10/@rem;
         input{
             width: 100%;
-            height: 100%;
+            height: 48/@rem;
             border: none;
             background-color: rgba(1, 165, 79, 0.9);
             color: #fff;
@@ -57,11 +75,62 @@
         }
     }
     .register_btn.btn_item{
-        width: 274/@rem;
+        width: 272/@rem;
+        height: 46/@rem;
         background-color: rgba(1, 165, 79, 0.6);
         text-align: center;
-        line-height: 46/@rem;
+        line-height: 48/@rem;
         color: #fff;
         border: 1/@rem solid rgba(1, 165, 79, 1);
     }
+    .phone_code{
+        margin: 5/@rem auto 0 auto;
+        position: relative;
+        .validation-invalid{
+            color:red;
+            position: absolute;
+            left: 0;
+            top:48/@rem;
+        }
+        input{
+            width: 130/@rem;
+            height: 46/@rem;
+            border: none;
+            background: rgba(0, 0, 0, .5);
+            border: 1/@rem solid #eee;
+            font-size: 16/@rem;
+            color: #eee;
+            float: left;
+            padding-left: 8/@rem;
+        }
+        .get_code_btn{
+            width: 120/@rem;
+            height: 48/@rem;
+            line-height: 48/@rem;
+            float: right;
+            background: rgba(1, 165, 79, 0.4);
+            text-align: center;
+            color: #fff;
+            margin-right: 3/@rem;
+        }
+        .get_code_btn.disabled{
+            background:rgba(238,238, 238, .9);
+            color: red;
+        }
+    }
+    .ajax_tip{
+            position: fixed;
+            bottom: 50/@rem;
+            left: 0;
+            right: 0;
+            height: 40/@rem;
+            line-height: 40/@rem;
+            text-align: center;
+        }
+        .ajax_tip.ajax_success_tip{
+            color: green;
+        }
+        .ajax_tip.ajax_error_tip{
+            color: red;
+        }
 }

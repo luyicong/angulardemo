@@ -10,7 +10,7 @@
     "scaleName": "500人以上",
     "industryId": "i1",
     "industryName": "互联网",
-    "salaryId": "s4",
+    "salaryId": "s2",
     "salaryName": "3k-5k",
     "experience": "1-3年",
     "education": "专科",
@@ -39,7 +39,7 @@
   }, {
     "id": "p1",
     "imageUrl": "/image/company-1.jpg",
-    "job": "WEB前端开发工程师",
+    "job": "WEB前端工程师",
     "companyId": "c1",
     "companyName": "广西网络有限公司",
     "cityId": "c2",
@@ -57,7 +57,7 @@
     "date": "2016-06-01 01:05"
   }, {
     "id": "p2",
-    "imageUrl": "/image/company-2.jpg",
+    "imageUrl": "/image/company-3.jpg",
     "job": "运维工程师",
     "companyId": "c2",
     "companyName": "六一集团有限公司",
