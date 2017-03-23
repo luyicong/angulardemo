@@ -1,6 +1,6 @@
 {
   "id": "p1",
-  "imageUrl": "/image/company-1.jpg",
+  "imageUrl": "image/company-1.jpg",
   "name": "前端开发工程师",
   "companyId": "c3",
   "companyName": "中锐网络科技有限公司",

@@ -5,7 +5,7 @@ angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state',
         function getJobInfo(){
             //延迟对象
             var def = $q.defer();
-            $http.get('/data/position.json?id='+$state.params.id).then(function(resp){
+            $http.get('/jobData/position.json?id='+$state.params.id).then(function(resp){
                 $scope.position = resp.data;
                 if(resp.data.posted){
                     $scope.message = '已投递';
@@ -26,7 +26,7 @@ angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state',
         });
         //获取公司基本信息
         function getCompanyInfo(id){
-            $http.get('data/company.json?id='+id).then(function(resp){
+            $http.get('/jobData/company.json?id='+id).then(function(resp){
                 $scope.companyInfo = resp.data;
             });    
         }
@@ -34,7 +34,7 @@ angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state',
         $scope.go = function(){
             if($scope.message !== '已投递'){
                 if($scope.isLogin){
-                    $http.post('data/position.json',{
+                    $http.post('/jobData/position.json',{
                         id : $scope.position.id
                     }).success(function(resp){
                         $log.info(resp);
@@ -42,7 +42,7 @@ angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state',
                     });
                 }else{
                     //页面跳转
-                    $sate.go('login');
+                    $state.go('login');
                 }
             }
         }

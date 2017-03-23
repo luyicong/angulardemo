@@ -17,7 +17,7 @@ angular.module('app').directive('appJobInfo',['$http',function($http){
             }
            });
             $scope.favorite = function(){
-                $http.post('data/myFavorite.json',{
+                $http.post('/jobData/myFavorite.json',{
                     id : $scope.pos.id,
                     select : !$scope.pos.select
                 }).success(function(){

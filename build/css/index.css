@@ -59,7 +59,7 @@ input {
   font-size: 0.8rem;
 }
 .head .h_top .goback_btn {
-  background: url('../../image/back_i.png') no-repeat 0.21333333rem center;
+  background: url('../image/back_i.png') no-repeat 0.21333333rem center;
 }
 .head .h_tips {
   width: 100%;
@@ -187,23 +187,23 @@ input {
   margin-right: 0.05333333rem;
 }
 .text_item i.salary_i {
-  background: url('../../image/salary_i.png') no-repeat center center;
+  background: url('../image/salary_i.png') no-repeat center center;
   background-size: 0.37333333rem 0.37333333rem;
 }
 .text_item i.address_i {
-  background: url('../../image/address_i.png') no-repeat center center;
+  background: url('../image/address_i.png') no-repeat center center;
   background-size: 0.37333333rem 0.37333333rem;
 }
 .text_item i.j_type_i {
-  background: url('../../image/j_type_i.png') no-repeat center center;
+  background: url('../image/j_type_i.png') no-repeat center center;
   background-size: 0.37333333rem 0.37333333rem;
 }
 .text_item i.exp_i {
-  background: url('../../image/exp_i.png') no-repeat center 0;
+  background: url('../image/exp_i.png') no-repeat center 0;
   background-size: 0.42666667rem 0.42666667rem;
 }
 .text_item i.edu_i {
-  background: url('../../image/edu_i.png') no-repeat center 0.05333333rem;
+  background: url('../image/edu_i.png') no-repeat center 0.05333333rem;
   background-size: 0.37333333rem 0.37333333rem;
 }
 .job_tips {
@@ -374,7 +374,7 @@ input {
   display: block;
   width: 0.64rem;
   height: 0.64rem;
-  background: url('/image/down_i.png') no-repeat center center;
+  background: url('../image/down_i.png') no-repeat center center;
   background-size: 0.32rem 0.32rem;
   position: absolute;
   right: 0;
@@ -448,15 +448,15 @@ input {
   color: #00b38a;
 }
 .foot .foot_nav .nav_item.active i.home_i {
-  background: url('../../image/home_i_active.png') center 0 no-repeat;
+  background: url('../image/home_i_active.png') center 0 no-repeat;
   background-size: 0.69333333rem 0.69333333rem;
 }
 .foot .foot_nav .nav_item.active i.search_i {
-  background: url('../../image/search_i_active.png') center 0.05333333rem no-repeat;
+  background: url('../image/search_i_active.png') center 0.05333333rem no-repeat;
   background-size: 0.64rem 0.64rem;
 }
 .foot .foot_nav .nav_item.active i.user_i {
-  background: url('../../image/user_i_active.png') center 0 no-repeat;
+  background: url('../image/user_i_active.png') center 0 no-repeat;
   background-size: 0.64rem 0.64rem;
 }
 .foot .foot_nav .nav_item {
@@ -476,15 +476,15 @@ input {
   margin: 0.24rem 0;
 }
 .foot .foot_nav .nav_item i.home_i {
-  background: url('../../image/home_i.png') center 0 no-repeat;
+  background: url('../image/home_i.png') center 0 no-repeat;
   background-size: 0.69333333rem 0.69333333rem;
 }
 .foot .foot_nav .nav_item i.search_i {
-  background: url('../../image/search_i.png') center 0.05333333rem no-repeat;
+  background: url('../image/search_i.png') center 0.05333333rem no-repeat;
   background-size: 0.64rem 0.64rem;
 }
 .foot .foot_nav .nav_item i.user_i {
-  background: url('../../image/user_i.png') center 0 no-repeat;
+  background: url('../image/user_i.png') center 0 no-repeat;
   background-size: 0.64rem 0.64rem;
 }
 .foot .foot_nav .nav_item span {
@@ -558,7 +558,7 @@ input {
   right: 0;
   top: 0;
   bottom: 0;
-  background: url('/image/background.png') no-repeat center center;
+  background: url('../image/background.png') no-repeat center center;
   background-size: cover;
 }
 .login .page_title {
@@ -590,11 +590,11 @@ input {
   float: left;
 }
 .login_form_wrap .icon_acccount {
-  background: url('/image/account.png') no-repeat center center rgba(0, 0, 0, 0.7);
+  background: url('../image/account.png') no-repeat center center rgba(0, 0, 0, 0.7);
   background-size: 0.53333333rem 0.53333333rem;
 }
 .login_form_wrap .icon_password {
-  background: url('/image/lock.png') no-repeat center center rgba(0, 0, 0, 0.7);
+  background: url('../image/lock.png') no-repeat center center rgba(0, 0, 0, 0.7);
   background-size: 0.53333333rem 0.53333333rem;
 }
 .login_form_wrap .item_right {

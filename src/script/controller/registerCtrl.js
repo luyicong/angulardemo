@@ -5,7 +5,7 @@ angular.module('app').controller('registerCtrl', ['$state','$interval','$http', 
     var iNum = 3;
     $scope.submit = function(){
         console.log($scope.user);
-        $http.post('data/regist.json',$scope.user).success(function(resp){
+        $http.post('/jobData/regist.json',$scope.user).success(function(resp){
             // console.log(resp);
             $scope.onOff = true;
             $scope.regSuccess = true;
@@ -34,7 +34,7 @@ angular.module('app').controller('registerCtrl', ['$state','$interval','$http', 
     //获取短信验证码
     var count = 60;
     $scope.senCode = function(){
-        $http.get('data/code.json').then(function(resp){
+        $http.get('./jobData/code.json').then(function(resp){
             if(resp.data.state === 1){
                 count = 60;
                 $scope.time = '60s重新获取';

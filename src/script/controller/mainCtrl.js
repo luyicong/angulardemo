@@ -5,7 +5,7 @@ angular.module('app').controller('mainCtrl', ['cache','$state','$http', '$scope'
     }else{
         $scope.isLogin = false;
     }
-    $http.get('/data/positionList.json').then(function(resp){
+    $http.get('/jobData/positionList.json').then(function(resp){
         $scope.list = resp.data;
     });
 }]);

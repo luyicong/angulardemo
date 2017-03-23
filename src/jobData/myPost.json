@@ -1,6 +1,6 @@
 [{
   "id": "p1",
-  "imageUrl": "/image/company-1.jpg",
+  "imageUrl": "image/company-1.jpg",
   "job": "WEB前端开发工程师",
   "companyId": "c1",
   "companyName": "中锐网络科技有限公司",
@@ -20,7 +20,7 @@
   "state": "1"
 }, {
   "id": "p3",
-  "imageUrl": "/image/company-3.png",
+  "imageUrl": "image/company-3.png",
   "job": "销售",
   "companyId": "c3",
   "companyName": "千度网络科技有限公司",

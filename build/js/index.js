@@ -7,15 +7,15 @@ angular.module('app', ['ui.router','ngCookies','validation']);
 //定义一个全局变量,run初始化变量
 angular.module('app').value('dict',{}).run(['dict','$http',function(dict,$http){
     //获取城市选择列表
-    $http.get('data/city.json').then(function(resp){
+    $http.get('/jobData/city.json').then(function(resp){
         dict.city = resp.data;
     });
     //获取薪资范围列表
-    $http.get('data/salary.json').then(function(resp){
+    $http.get('/jobData/salary.json').then(function(resp){
         dict.salary = resp.data;
     });
     //获取企业规模列表
-    $http.get('data/scale.json').then(function(resp){
+    $http.get('/jobData/scale.json').then(function(resp){
         dict.scale = resp.data;
     });
 }]);
@@ -115,14 +115,14 @@ angular.module('app').config(['$validationProvider',function($validationProvider
 }]);
 'use strict';
 angular.module('app').controller('companyCtrl',['$http','$state','$scope',function($http,$state,$scope){
-    $http.get('data/company.json?id='+$state.params.id).then(function(resp){
+    $http.get('/jobData/company.json?id='+$state.params.id).then(function(resp){
         $scope.companyInfo = resp.data;
         $scope.jobcate = resp.data.positionClass;
     });
 }]);
 'use strict';
 angular.module('app').controller('favoriteCtrl', ['$http', '$scope', function($http, $scope){
-    $http.get('data/myFavorite.json').then(function(resp){
+    $http.get('/jobData/myFavorite.json').then(function(resp){
         $scope.favoriteList = resp.data;
     });
 }]);
@@ -134,7 +134,7 @@ angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state',
         function getJobInfo(){
             //延迟对象
             var def = $q.defer();
-            $http.get('/data/position.json?id='+$state.params.id).then(function(resp){
+            $http.get('/jobData/position.json?id='+$state.params.id).then(function(resp){
                 $scope.position = resp.data;
                 if(resp.data.posted){
                     $scope.message = '已投递';
@@ -155,7 +155,7 @@ angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state',
         });
         //获取公司基本信息
         function getCompanyInfo(id){
-            $http.get('data/company.json?id='+id).then(function(resp){
+            $http.get('/jobData/company.json?id='+id).then(function(resp){
                 $scope.companyInfo = resp.data;
             });    
         }
@@ -163,7 +163,7 @@ angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state',
         $scope.go = function(){
             if($scope.message !== '已投递'){
                 if($scope.isLogin){
-                    $http.post('data/position.json',{
+                    $http.post('/jobData/position.json',{
                         id : $scope.position.id
                     }).success(function(resp){
                         $log.info(resp);
@@ -171,7 +171,7 @@ angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state',
                     });
                 }else{
                     //页面跳转
-                    $sate.go('login');
+                    $state.go('login');
                 }
             }
         }
@@ -179,7 +179,7 @@ angular.module('app').controller('jobDetailsCtrl',['$log','$q','$http','$state',
 'use strict';
 angular.module('app').controller('loginCtrl', ['cache','$http', '$scope','$state', function(cache,$http, $scope,$state){
     $scope.submit = function(){
-        $http.post('data/login.json',$scope.user).success(function(resp){
+        $http.post('/jobData/login.json',$scope.user).success(function(resp){
             //写入缓存
             cache.put('id',resp.data.id);
             cache.put('name',resp.data.name);
@@ -196,7 +196,7 @@ angular.module('app').controller('mainCtrl', ['cache','$state','$http', '$scope'
     }else{
         $scope.isLogin = false;
     }
-    $http.get('/data/positionList.json').then(function(resp){
+    $http.get('/jobData/positionList.json').then(function(resp){
         $scope.list = resp.data;
     });
 }]);
@@ -232,7 +232,7 @@ angular.module('app').controller('postCtrl', ['$http', '$scope', function($http,
             name:'不合适'
         }
     ];
-    $http.get('data/myPost.json').then(function(resp){
+    $http.get('/jobData/myPost.json').then(function(resp){
         $scope.myPostList = resp.data;
     });
     $scope.filterObj = {};
@@ -258,7 +258,7 @@ angular.module('app').controller('registerCtrl', ['$state','$interval','$http', 
     var iNum = 3;
     $scope.submit = function(){
         console.log($scope.user);
-        $http.post('data/regist.json',$scope.user).success(function(resp){
+        $http.post('/jobData/regist.json',$scope.user).success(function(resp){
             // console.log(resp);
             $scope.onOff = true;
             $scope.regSuccess = true;
@@ -287,7 +287,7 @@ angular.module('app').controller('registerCtrl', ['$state','$interval','$http', 
     //获取短信验证码
     var count = 60;
     $scope.senCode = function(){
-        $http.get('data/code.json').then(function(resp){
+        $http.get('./jobData/code.json').then(function(resp){
             if(resp.data.state === 1){
                 count = 60;
                 $scope.time = '60s重新获取';
@@ -313,7 +313,7 @@ angular.module('app').controller('registerCtrl', ['$state','$interval','$http', 
 angular.module('app').controller('searchCtrl', ['dict','$http','$scope', function(dict,$http,$scope){
     $scope.name = '';
     $scope.search = function(){
-        $http.get('/data/positionList.json?name='+$scope.name).then(function(resp){
+        $http.get('/jobData/positionList.json?name='+$scope.name).then(function(resp){
             $scope.searchLists = resp.data;
         });
     }
@@ -417,7 +417,7 @@ angular.module('app').directive('appJobList',['$http',function($http){
         },
         link : function($scope){
             $scope.select = function(item){
-                $http.post('data/myFavorite.json',{
+                $http.post('/jobData/myFavorite.json',{
                     id : item.id,
                     select : !item.select
                 }).success(function(){
@@ -488,7 +488,7 @@ angular.module('app').directive('appJobInfo',['$http',function($http){
             }
            });
             $scope.favorite = function(){
-                $http.post('data/myFavorite.json',{
+                $http.post('/jobData/myFavorite.json',{
                     id : $scope.pos.id,
                     select : !$scope.pos.select
                 }).success(function(){

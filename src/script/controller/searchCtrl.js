@@ -2,7 +2,7 @@
 angular.module('app').controller('searchCtrl', ['dict','$http','$scope', function(dict,$http,$scope){
     $scope.name = '';
     $scope.search = function(){
-        $http.get('/data/positionList.json?name='+$scope.name).then(function(resp){
+        $http.get('/jobData/positionList.json?name='+$scope.name).then(function(resp){
             $scope.searchLists = resp.data;
         });
     }

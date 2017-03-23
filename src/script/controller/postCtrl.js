@@ -14,7 +14,7 @@ angular.module('app').controller('postCtrl', ['$http', '$scope', function($http,
             name:'不合适'
         }
     ];
-    $http.get('data/myPost.json').then(function(resp){
+    $http.get('/jobData/myPost.json').then(function(resp){
         $scope.myPostList = resp.data;
     });
     $scope.filterObj = {};

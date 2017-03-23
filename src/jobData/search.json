@@ -1,7 +1,7 @@
 [
   {
     "id": "sf1232",
-    "imageUrl": "/image/company-1.jpg",
+    "imageUrl": "image/company-1.jpg",
     "job": "WEB前端",
     "companyId": "mok1232",
     "companyName": "慕课网",
