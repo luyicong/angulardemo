@@ -135,6 +135,7 @@ input {
 }
 .detail_job_info {
   width: 100%;
+  height: 4.26666667rem;
   overflow: hidden;
   background-color: #fff;
 }
