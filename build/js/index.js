@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ui.router','ngCookies','validation']);
+angular.module('app', ['ui.router','ngCookies','validation','ngAnimate']);
 
 
 'use strict';
@@ -287,7 +287,7 @@ angular.module('app').controller('registerCtrl', ['$state','$interval','$http', 
     //获取短信验证码
     var count = 60;
     $scope.senCode = function(){
-        $http.get('./jobData/code.json').then(function(resp){
+        $http.get('/jobData/code.json').then(function(resp){
             if(resp.data.state === 1){
                 count = 60;
                 $scope.time = '60s重新获取';
