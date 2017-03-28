@@ -2,8 +2,8 @@
     <div class="text_tips">人才网</div>
     <div class="search_box">
         <span ng-click="name='';search();" class="cancel_btn">取消</span>
-        <div ng-model="name" class="search_input">
-            <input type="text" placeholder="请输入关键字">
+        <div class="search_input">
+            <input ng-model="name" type="text" placeholder="请输入关键字">
         </div>
         <div ng-click="search();" class="submit_btn">搜索</div>
     </div>
